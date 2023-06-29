@@ -12,8 +12,17 @@ const Heart = (props) => {
   )
 };
 
+const Header = () => {
+  return <div className='App-header'>I ❤️ React</div>;
+};
+
 function App() {
-  return <Heart msg={message} />;
+  return (
+      <>
+          <Header />
+          <Heart msg={message} />
+      </>
+  );
 }
 
 export default App;
