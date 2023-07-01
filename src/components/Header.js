@@ -1,5 +1,15 @@
-const Header = () => {
-    return <div className='App-header'>I ❤️ React</div>;
-  };
+import { Navbar, NavbarBrand } from 'reactstrap';
+import NucampLogo from '../app/assets/img/logo.png';
+import React from 'react';
 
-  export default Header;
+const Header = () => {
+    return (
+        <Navbar dark color='primary' sticky='top' expand='md'>
+            <NavbarBrand href='/'>
+                <img src={NucampLogo} alt='nucamp logo' />
+            </NavbarBrand>
+        </Navbar>
+    );
+};
+
+export default Header;
