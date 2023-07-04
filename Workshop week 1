@@ -1,0 +1,23 @@
+// Array.map(): declarative function that accepts a callback as an argument
+
+// let names = [];
+
+//Declarative vs. Imperative
+/* Declarative: "What" to do.
+   Imperative: "How" to do it, step-by-step instructions.
+*/
+
+// Add a suffix of "Jr" to every person's name.
+
+/* Declarative approach
+
+function addJr(name) {
+    return name + "Jr";
+}
+
+names.map(addJr); // map will create the loop and return to our callback the item it's inspecting
+
+Array.find(); // declarative function to help search an array.
+
+//DOM Query/Manipulation tool:
+DOM is an object representation of every element.
