@@ -1,15 +1,18 @@
 import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
 
-const CampsiteCard = (props) => {
+const CampsiteCard = ({campsite}) => {  //to destructure an object, list the keys in curly braces, and assign them to the object name.
+    //destructuring props by creating destructuring assignment and unpacking props.
+    // const { campsite } = props; with this, we dont have to write props for campsite.
+    const { image, name } = campsite; // this is the common way to destructure props.
     return (
         <Card>
             <CardImg
                 width='100%'
-                src={props.campsite.image}
-                alt={props.campsite.name}
+                src={image}
+                alt={name}
             />
             <CardImgOverlay>
-                <CardTitle>{props.campsite.name}</CardTitle>
+                <CardTitle>{name}</CardTitle>
             </CardImgOverlay>
         </Card>
     )
