@@ -9,3 +9,10 @@ export const selectAllCampsites = () => {
 export const selectRandomCampsite = () => {
     return CAMPSITES[Math.floor(CAMPSITES.length * Math.random())];
 };
+
+export const selectFeaturedCampsite = () => {
+    /* whenever this function returns a true value means our test has passed.
+    Which means that whatever item from the array it was iterating over at that time,
+    is what will be returned by the find method */
+    return CAMPSITES.find((campsite) => campsite.featured); 
+};
