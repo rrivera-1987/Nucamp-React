@@ -21,3 +21,19 @@ Array.find(); // declarative function to help search an array.
 
 //DOM Query/Manipulation tool:
 DOM is an object representation of every element.
+
+/* Regular Expressions:
+
+    Syntax: Two forward slashes /<set of rules>/
+    Rules: character set called "tokens" -- [A-z]
+
+    Use: uses the rule to validate against some user input. */
+
+// let regex = /[j-p]+/; // Rule says must have at least 1 character from 'j' - 'p'. 
+
+/* the set of rules need to go inside between square brackets []. */
+
+// regex = /^\s$/; // ^ indicates the start of the string, what comes after is the enforcement.
+                // Must start and end with a space {white space character}/
+
+/* 
