@@ -17,12 +17,29 @@ const initialState = {
 The object that we pass to it as an argument is what is called a configuration object. Meaning an object
 containing information about how to configure something. In this case we are configuring a slicce 
 of a global state date.*/
-const commentsSlice = createSlice({
+const commentSlice = createSlice({
     name: 'comments',
-    initialState
+    initialState,
+    reducers: {
+    //dispatching an action to update comments list by first implementing a case reducer.
+    // written as a method of the reducer's object.
+    addComment: (state, action) => { 
+            console.log('add comment action.payload:', action.payload);
+            console.log('add comment state.commentsArray:', state.commentsArray);
+            const newComment = { //basic approach to add comment to the array, as long as nothing is removed.
+                id: state.commentsArray.length + 1,
+                ...action.payload
+            };
+            //an immer will handle updating the state in an immutable way. Each function defined in the reducer
+            //will also have a corresponding action creator function with the same function name.
+            state.commentsArray.push(newComment);
+        }    
+    }       
 });
 
-export const commentsReducer = commentsSlice.reducer; //slice reducer
+export const commentsReducer = commentSlice.reducer; //slice reducer
+
+export const { addComment } = commentSlice.actions;
 
 export const selectCommentsByCampsiteId = (campsiteId) => (state) => {
     return state.comments.commentsArray.filter(
