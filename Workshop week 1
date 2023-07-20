@@ -35,5 +35,3 @@ DOM is an object representation of every element.
 
 // regex = /^\s$/; // ^ indicates the start of the string, what comes after is the enforcement.
                 // Must start and end with a space {white space character}/
-
-/* 

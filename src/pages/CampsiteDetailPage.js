@@ -4,11 +4,13 @@ import { selectCampsiteById } from '../features/campsites/campsitesSlice';
 import CampsiteDetails from '../features/campsites/CampsiteDetails';
 import CommentsList from '../features/comments/CommentsList';
 import SubHeader from '../components/SubHeader';
+import { useSelector } from 'react-redux';
 
 const CampsiteDetailPage = () => {
     const { campsiteId } = useParams();
     /* this should return to us the campsite object from the CAMPSITES.js array that matches the ID */
-    const campsite = selectCampsiteById(campsiteId); 
+    const campsite = useSelector(selectCampsiteById(campsiteId)); 
+    console.log('campsite:', campsite);
 
     return (
         <Container>
