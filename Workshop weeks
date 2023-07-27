@@ -1,0 +1,78 @@
+// Array.map(): declarative function that accepts a callback as an argument
+
+// let names = [];
+
+//Declarative vs. Imperative
+/* Declarative: "What" to do.
+   Imperative: "How" to do it, step-by-step instructions.
+*/
+
+// Add a suffix of "Jr" to every person's name.
+
+/* Declarative approach
+
+function addJr(name) {
+    return name + "Jr";
+}
+
+names.map(addJr); // map will create the loop and return to our callback the item it's inspecting
+
+Array.find(); // declarative function to help search an array.
+
+//DOM Query/Manipulation tool:
+DOM is an object representation of every element.
+
+/* Regular Expressions:
+
+    Syntax: Two forward slashes /<set of rules>/
+    Rules: character set called "tokens" -- [A-z]
+
+    Use: uses the rule to validate against some user input. */
+
+// let regex = /[j-p]+/; // Rule says must have at least 1 character from 'j' - 'p'. 
+
+/* the set of rules need to go inside between square brackets []. */
+
+// regex = /^\s$/; // ^ indicates the start of the string, what comes after is the enforcement.
+                // Must start and end with a space {white space character}/
+
+/* Reducer functions
+
+Array.reducer():
+    - declarative function, loops or iterates through array.
+    - Invokes your provided callback function.
+    - "Accumulate" the items in a list.
+        - Ex: Sum a list of numbers.
+    - Returns the final accumulated result.
+
+let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    What is the sum of all the numbers?
+numbers.reduce(function(accumulator, item) {
+
+}); 
+    - it takes two arguments.
+    - First value will be the starter or accumulator value.
+What needs to be done?
+    let sum = accumulator + items; //gives you the new current value.
+    return sum; //returns the next accumulator value.
+
+let states = ['NJ', 'PA', 'NY', 'MO', 'CA', 'NJ', 'NJ', 'PA', 'CA', 'NY'];
+    obj = {
+        <state>: <count>
+        'NJ': 3,
+        'PA': 2
+        'NY': 2
+    }
+    let finalResult = state.reduce(functon(accumulator, item) {
+        // add the state and count into the object.
+        if (accumulator[item]) //seen the state already
+            accumulator[item] = accumulator[item] + 1;
+    } else {
+        accumulator[item] = 1;
+    }
+    return accumulator;}, 
+    {})
+
+Look up 'computed properties'.
+
+Redux is a centralized management location of data. It is a separate package.*/

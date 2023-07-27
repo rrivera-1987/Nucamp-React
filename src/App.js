@@ -1,20 +1,26 @@
 import Header from './components/Header';
 import CampsitesDirectoryPage from './pages/CampsitesDirectoryPage';
 import Footer from './components/Footer';
-import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import ContactPage from './pages/ContactPage';
 import HomePage from './pages/HomePage';
 import CampsiteDetailPage from './pages/CampsiteDetailPage';
 import AboutPage from './pages/AboutPage';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
+import { useEffect} from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchCampsites } from './features/campsites/campsitesSlice';
+import './App.css';
 
 /* The <Routes> component is used to group route components, and it will handle the logic to direct 
 requests to different URL paths */
 function App() {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchCampsites());
+    },  [dispatch]);
+
     return (
-      <Provider store={store}>
         <div className='App'>
           <Header />
           <Routes> 
@@ -28,7 +34,6 @@ function App() {
           </Routes>
           <Footer />
         </div>
-      </Provider>
     );
 }
 
