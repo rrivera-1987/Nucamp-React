@@ -1,10 +1,12 @@
+import { useSelector } from 'react-redux';
 import { Col, Row } from 'reactstrap';
 //import DisplayCard from './DisplayCard';
 import AnimatedDisplayCard from './AnimatedDisplayCard';
 import { selectFeaturedCampsite } from '../campsites/campsitesSlice';
 import { selectFeaturedPromotion } from '../promotions/PromotionsSlice';
 import { selectFeaturedPartner } from '../partners/partnersSlice';
-import { useSelector } from 'react-redux';
+import Error from '../../components/Error';
+import Loading from '../../components/Loading';
 
 const DisplayList = () => {
     const items = useSelector((state) => [ //Converts the entire array to be able to access the Redux state.
@@ -19,10 +21,17 @@ const DisplayList = () => {
     return (
         <Row>
             {items.map((item, idx) => {
+                const { featuredItem, isLoading, errMsg } = item;
+                if (isLoading) {
+                    return <Loading key={idx} />
+                }
+                if (errMsg) {
+                    return <Error errMsg={errMsg} key={idx} />
+                }
                 return (
-                    item && (
+                    featuredItem && (
                         <Col md className='ms-1' key={idx}>
-                            <AnimatedDisplayCard item={item} />
+                            <AnimatedDisplayCard item={featuredItem} />
                         </Col>
                     )
                 );

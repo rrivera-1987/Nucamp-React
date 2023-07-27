@@ -10,6 +10,7 @@ import CampsiteDetailPage from './pages/CampsiteDetailPage';
 import AboutPage from './pages/AboutPage';
 import { fetchCampsites } from './features/campsites/campsitesSlice';
 import { fetchPartners } from './features/partners/partnersSlice';
+import { fetchPromotions } from './features/promotions/PromotionsSlice';
 import './App.css';
 
 /* The <Routes> component is used to group route components, and it will handle the logic to direct 
@@ -20,6 +21,7 @@ function App() {
     useEffect(() => {
         dispatch(fetchCampsites());
         dispatch(fetchPartners());
+        dispatch(fetchPromotions());
     },  [dispatch]);
 
 
