@@ -1,5 +1,6 @@
-import { COMMENTS } from '../../app/shared/COMMENTS';
-import { createSlice } from '@reduxjs/toolkit';
+//import { COMMENTS } from '../../app/shared/oldData/COMMENTS';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { baseUrl } from '../../app/shared/baseUrl';
 
 /* The function is taking a parameter of campsiteId. In the body, return a new array filtering the COMMENTS array
 for only the comments with the campsiteId property that matches the campsite ID that was passes in as an argument.
@@ -10,8 +11,40 @@ export const selectCommentsByCampsiteId = (campsiteId) => {
     );
 };*/
 
+export const fetchComments = createAsyncThunk(
+    'comments/fetchComment',
+    async () => {
+        const response = await fetch(baseUrl + 'comments');
+        if (!response.ok) {
+            return Promise.reject('Unable to fetch, status: ' + response.status);
+        }
+        const data = await response.json();
+        return data;
+    }
+);
+
+export const postComment = createAsyncThunk(
+    'comments/postComment',
+    async (comment, { dispatch }) => {
+        const response = await fetch(baseUrl + 'comments',{
+                method: 'POST',
+                body: JSON.stringify(comment),
+                headers: { 'Content-Type': 'application/json' },
+            });
+
+            if (!response.ok) {
+                return Promise.reject(response.status);
+            }
+
+            const data = await response.json();
+            dispatch(addComment(data));
+    },
+);
+
 const initialState = {
-    commentsArray: COMMENTS
+    commentsArray: [],
+    isLoading: true,
+    errMsg: '',
 };
 /* The function requires an object as an argument and it will return an object as its return value.
 The object that we pass to it as an argument is what is called a configuration object. Meaning an object
@@ -34,14 +67,34 @@ const commentSlice = createSlice({
             //will also have a corresponding action creator function with the same function name.
             state.commentsArray.push(newComment);
         }    
-    }       
+    },
+    extraReducers: {
+        [fetchComments.pending]: (state) => {
+            state.isLoading = true;
+        },
+        [fetchComments.fulfilled]: (state, action) => {
+            state.isLoading = false;
+            state.errMsg = '';
+            state.commentsArray = action.payload;
+        },
+        [fetchComments.rejected]: (state, action) => {
+            state.isLoading = false;
+            state.errMsg = action.error ? action.error.message : 'Fetch failed';
+        },
+        [postComment.rejected]: (state, action) => {
+            alert(
+                'Your comment could not be posted\nError: ' +
+                    (action.error ? action.error.message : 'Fetch faileed')
+            );
+        },
+    },
 });
 
 export const commentsReducer = commentSlice.reducer; //slice reducer
 
 export const { addComment } = commentSlice.actions;
 
-export const selectCommentsByCampsiteId = (campsiteId) => (state) => {
+export const selectCommentByCampsiteId = (campsiteId) => (state) => {
     return state.comments.commentsArray.filter(
         (comment) => comment.campsiteId === parseInt(campsiteId)
     );

@@ -11,6 +11,7 @@ import AboutPage from './pages/AboutPage';
 import { fetchCampsites } from './features/campsites/campsitesSlice';
 import { fetchPartners } from './features/partners/partnersSlice';
 import { fetchPromotions } from './features/promotions/PromotionsSlice';
+import { fetchComments } from './features/comments/commentSlice';
 import './App.css';
 
 /* The <Routes> component is used to group route components, and it will handle the logic to direct 
@@ -22,6 +23,7 @@ function App() {
         dispatch(fetchCampsites());
         dispatch(fetchPartners());
         dispatch(fetchPromotions());
+        dispatch(fetchComments());
     },  [dispatch]);
 
 
